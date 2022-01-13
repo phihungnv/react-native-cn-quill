@@ -120,6 +120,15 @@ export const editor_js = `
       sendMessage(getBoundsJson);
   }
 
+  var getFormat = function (key, index, length = 0) {
+    var formatData = quill.getFormat(index, length);
+    var formatDataJson = JSON.stringify({
+      type: 'get-format',
+      key: key,
+      data: formatData });
+      sendMessage(formatDataJson);
+  }
+
   var getSelection = function (key, focus = false) {
     var getSelectionData = quill.getSelection(focus);
     var getSelectionJson = JSON.stringify({
@@ -162,6 +171,9 @@ export const editor_js = `
         break;
       case 'getBounds':
         getBounds(msg.key, msg.index, msg.length);
+        break;
+      case 'getFormat':
+        getFormat(msg.key, msg.index, msg.length);
         break;
       case 'getSelection':
         getSelection(msg.key, msg.focus);

@@ -218,6 +218,7 @@ export default class QuillEditor extends React.Component<
       case 'get-text':
       case 'get-length':
       case 'get-bounds':
+      case 'get-format':
       case 'get-selection':
       case 'get-dimensions':
       case 'get-html':
@@ -292,6 +293,10 @@ export default class QuillEditor extends React.Component<
 
   getBounds = (index: number, length?: number): Promise<any> => {
     return this.postAwait<any>({ command: 'getBounds', index, length });
+  };
+
+  getFormat = (index: number, length?: number): Promise<any> => {
+    return this.postAwait<any>({ command: 'getFormat', index, length });
   };
 
   getSelection = (focus: boolean = false): Promise<any> => {
