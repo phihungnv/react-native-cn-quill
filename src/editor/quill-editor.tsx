@@ -191,13 +191,13 @@ export default class QuillEditor extends React.Component<
 
   private onMessage = (event: WebViewMessageEvent) => {
     const message = this.toMessage(event.nativeEvent.data);
-    const { autoSize } = this.props;
+    const { autoSize, offsetToolBar = 0 } = this.props;
     const response = message.key
       ? this._promises.find((x) => x.key === message.key)
       : undefined;
     switch (message.type) {
       case 'dimensions-change':
-        if (autoSize === true) this.setState({ height: message.data.height });
+        if (autoSize === true) this.setState({ height: message.data.height + offsetToolBar });
         this._handlers
           .filter((x) => x.event === message.type)
           .forEach((item) => item.handler(message.data));
