@@ -57,6 +57,7 @@ export interface EditorProps {
   onBlur?: () => void;
   onFocus?: () => void;
   customJS?: string;
+  offsetToolBar?: number
 }
 
 export default class QuillEditor extends React.Component<
